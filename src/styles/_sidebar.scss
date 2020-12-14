@@ -1,0 +1,95 @@
+@import 'variables';
+@import 'mixins';
+
+.sidebar {
+  background-color: $sidebar-bg;
+  width: 40rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 7rem;
+  padding-left: 4rem;
+  z-index: -1;
+  overflow: scroll;
+  &__generic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    li {
+      @include project-style;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      font-size: 1.4rem;
+      padding: 5px 16px 5px 5px;
+      font-weight: 400;
+      span {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: 1rem;
+        svg {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+  &__projects {
+    margin-top: 2rem;
+    .sidebar__expansion-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 16px 5px 5px;
+
+      .sidebar__btn--toggle {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 2.5rem;
+          height: 2.5rem;
+          position: relative;
+          margin-right: 1rem;
+          svg {
+            transform: rotate(90deg);
+            position: absolute;
+            top: 0.2rem;
+            left: 0.3;
+          }
+        }
+      }
+      .sidebar__btn--add {
+        display: none;
+      }
+      &:hover {
+        .sidebar__btn--add {
+          display: block;
+        }
+      }
+    }
+  }
+  &__projects-list {
+    padding: 0;
+    .sidebar__project {
+      @include project-style;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      padding: 5px 16px 5px 5px;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}

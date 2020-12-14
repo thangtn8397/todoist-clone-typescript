@@ -1,0 +1,6 @@
+@mixin project-style {
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+  }
+}
