@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import AddIcon from '@material-ui/icons/Add';
 import { useProjects } from '../hooks';
@@ -6,10 +6,26 @@ import { Project } from './Project';
 
 export const Projects: React.FC = () => {
   const { projects } = useProjects();
+  const [showProjects, setShowProjects] = useState(true);
+  const toggleProjects = () => {
+    setShowProjects(!showProjects);
+  };
   return (
-    <div className="sidebar__projects">
+    <div
+      className={
+        showProjects
+          ? 'sidebar__projects'
+          : 'sidebar__projects--hidden sidebar__projects'
+      }
+    >
       <div className="sidebar__expansion-toggle">
-        <button type="button" className="btn sidebar__btn--toggle">
+        <button
+          type="button"
+          className="btn sidebar__btn--toggle"
+          onClick={() => {
+            toggleProjects();
+          }}
+        >
           <span>
             <ArrowForwardIosIcon />
           </span>
