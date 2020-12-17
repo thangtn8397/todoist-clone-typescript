@@ -3,4 +3,8 @@
   &:hover {
     background-color: #fff;
   }
+  &.active {
+    background: #fff;
+    font-weight: 700;
+  }
 }
