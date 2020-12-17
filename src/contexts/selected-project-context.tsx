@@ -16,7 +16,7 @@ export const SelectedProjectContext = React.createContext<selectedProjectContext
 );
 
 export const SelectedProjectProvider: FC = ({ children }: any) => {
-  const [selectedProject, setSelectedProject] = useState('INBOX');
+  const [selectedProject, setSelectedProject] = useState('inbox');
   const value: selectedProjectContextInterface = {
     selectedProject,
     setSelectedProject,

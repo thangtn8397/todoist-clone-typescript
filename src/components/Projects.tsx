@@ -26,7 +26,7 @@ export const Projects: React.FC = () => {
             toggleProjects();
           }}
         >
-          <span>
+          <span className="arrow">
             <ArrowForwardIosIcon />
           </span>
           Projects
@@ -39,6 +39,7 @@ export const Projects: React.FC = () => {
         {projects.map((project) => {
           return (
             <Project
+              key={project.docId}
               name={project.name}
               userId={project.userId}
               projectId={project.projectId}

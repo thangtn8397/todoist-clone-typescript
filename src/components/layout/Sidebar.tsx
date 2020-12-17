@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions  */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React from 'react';
 import InboxOutlinedIcon from '@material-ui/icons/InboxOutlined';
 import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import { Projects } from '../Projects';
+import { useSelectedProject } from '../../contexts/selected-project-context';
 
 function Sidebar() {
-  const [active, setActive] = useState('inbox');
+  const { selectedProject, setSelectedProject } = useSelectedProject();
+
   return (
     <div className="sidebar">
       <ul className="sidebar__generic">
         <li
           role="menuitem"
           className={
-            active === 'inbox' ? 'sidebar__project active' : 'sidebar__project'
+            selectedProject === 'inbox'
+              ? 'sidebar__project active'
+              : 'sidebar__project'
           }
           onClick={() => {
-            setActive('inbox');
+            setSelectedProject('inbox');
           }}
           onKeyDown={(event: React.KeyboardEvent) => {
             if (event.key === 'Enter') {
-              setActive('inbox');
+              setSelectedProject('inbox');
             }
           }}
         >
@@ -31,14 +37,16 @@ function Sidebar() {
         <li
           role="menuitem"
           className={
-            active === 'today' ? 'sidebar__project active' : 'sidebar__project'
+            selectedProject === 'today'
+              ? 'sidebar__project active'
+              : 'sidebar__project'
           }
           onClick={() => {
-            setActive('today');
+            setSelectedProject('today');
           }}
           onKeyDown={(event: React.KeyboardEvent) => {
             if (event.key === 'Enter') {
-              setActive('today');
+              setSelectedProject('today');
             }
           }}
         >
@@ -50,16 +58,16 @@ function Sidebar() {
         <li
           role="menuitem"
           className={
-            active === 'upcoming'
+            selectedProject === 'upcoming'
               ? 'sidebar__project active'
               : 'sidebar__project'
           }
           onClick={() => {
-            setActive('upcoming');
+            setSelectedProject('upcoming');
           }}
           onKeyDown={(event: React.KeyboardEvent) => {
             if (event.key === 'Enter') {
-              setActive('upcoming');
+              setSelectedProject('upcoming');
             }
           }}
         >

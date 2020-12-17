@@ -74,8 +74,10 @@
           height: 2.5rem;
           position: relative;
           margin-right: 1rem;
-          svg {
+          .arrow {
+            font-size: 1.4rem;
             transform: rotate(90deg);
+            fill: rgba(0, 0, 0, 0.5);
           }
         }
       }
@@ -106,6 +108,14 @@
           margin-right: 1rem;
         }
       }
+    }
+  }
+  &__projects--hidden {
+    .arrow {
+      transform: rotate(90deg);
+    }
+    .sidebar__projects-list {
+      display: none;
     }
   }
 }
