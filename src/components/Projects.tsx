@@ -42,6 +42,7 @@ export const Projects: React.FC = () => {
               name={project.name}
               userId={project.userId}
               projectId={project.projectId}
+              docId={project.docId}
             />
           );
         })}

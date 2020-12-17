@@ -1,6 +1,10 @@
 @mixin project-style {
   cursor: pointer;
+  border-radius: 5px;
   &:hover {
+    background-color: #fff;
+  }
+  &.active {
     background-color: #fff;
   }
 }
