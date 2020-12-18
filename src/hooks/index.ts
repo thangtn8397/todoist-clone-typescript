@@ -23,6 +23,6 @@ export const useProjects = () => {
         });
         setProjects(newProjects);
       });
-  }, []);
-  return { projects, useProjects };
+  }, [projects]);
+  return { projects, setProjects };
 };

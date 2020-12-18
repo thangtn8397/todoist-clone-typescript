@@ -93,19 +93,30 @@
     .sidebar__projects-list {
       padding: 0;
       .sidebar__project {
-        @include project-style;
         font-size: 1.4rem;
+        padding: 5px 16px 5px 5px;
         display: flex;
         align-items: center;
-        padding: 5px 16px 5px 5px;
-
-        span {
+        flex: 1;
+        @include project-style;
+        .sidebar__project-title {
           display: flex;
           align-items: center;
-          justify-content: center;
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-right: 1rem;
+          }
+        }
+        .sidebar__btn--delete {
+          position: absolute;
+          right: 1rem;
           width: 2.5rem;
           height: 2.5rem;
-          margin-right: 1rem;
+          font-size: 1.4rem;
         }
       }
     }

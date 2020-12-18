@@ -1,23 +1,25 @@
 /* eslint-disable no-unused-vars */
 import React, { FC, useContext, useState } from 'react';
 
-interface selectedProjectContextInterface {
-  selectedProject: string;
-  setSelectedProject(project: string): void;
+interface SelectedProjectContextInterface {
+  selectedProject: string | undefined;
+  setSelectedProject(project: string | undefined): void;
 }
 const initialContextValue = {
-  selectedProject: 'INBOX ',
-  setSelectedProject: (selectedProject: string) => {
+  selectedProject: 'inbox',
+  setSelectedProject: (selectedProject: string | undefined) => {
     return undefined;
   },
 };
-export const SelectedProjectContext = React.createContext<selectedProjectContextInterface>(
+export const SelectedProjectContext = React.createContext<SelectedProjectContextInterface>(
   initialContextValue,
 );
 
 export const SelectedProjectProvider: FC = ({ children }: any) => {
-  const [selectedProject, setSelectedProject] = useState('inbox');
-  const value: selectedProjectContextInterface = {
+  const [selectedProject, setSelectedProject] = useState<string | undefined>(
+    'inbox',
+  );
+  const value: SelectedProjectContextInterface = {
     selectedProject,
     setSelectedProject,
   };
