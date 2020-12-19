@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import Modal from './UI/Modal';
 import { ProjectProps } from '../types';
 import { useSelectedProject } from '../contexts/selected-project-context';
-import { useProjects } from '../hooks';
+import { useProjectsContext } from '../contexts/projects-context';
 import { firebase } from '../firebase';
 
 export const Project: React.FC<ProjectProps> = ({
   name,
   docId,
 }: ProjectProps) => {
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const { selectedProject, setSelectedProject } = useSelectedProject();
-  const { projects, setProjects } = useProjects();
+  const { projects, setProjects } = useProjectsContext();
   const deleteProject = (id: string | undefined) => {
-    firebase.firestore().collection('projects').doc(id).delete();
-    setProjects(projects);
+    firebase
+      .firestore()
+      .collection('projects')
+      .doc(id)
+      .delete()
+      .then(() => {
+        setProjects([...projects]);
+        setSelectedProject('inbox');
+      });
   };
   return (
     <li
@@ -27,8 +36,8 @@ export const Project: React.FC<ProjectProps> = ({
       <div
         role="button"
         tabIndex={-10}
+        className="sidebar__project-title"
         onClick={() => {
-          console.log('clicked');
           setSelectedProject(docId);
         }}
         onKeyDown={(event: React.KeyboardEvent) => {
@@ -36,7 +45,6 @@ export const Project: React.FC<ProjectProps> = ({
             setSelectedProject(docId);
           }
         }}
-        className="sidebar__project-title"
       >
         <span>
           <FiberManualRecordIcon />
@@ -47,13 +55,33 @@ export const Project: React.FC<ProjectProps> = ({
         type="button"
         className="btn sidebar__btn--delete"
         onClick={() => {
-          deleteProject(docId);
+          setConfirmDelete(true);
         }}
       >
         <span>
           <DeleteOutlineOutlinedIcon />
         </span>
       </button>
+
+      <Modal
+        showModal={confirmDelete}
+        onCloseModal={() => {
+          setConfirmDelete(false);
+        }}
+      >
+        <div>
+          <p>Are you sure you want to delete {name}?</p>
+          <button
+            type="button"
+            onClick={() => {
+              deleteProject(docId);
+              setConfirmDelete(false);
+            }}
+          >
+            delete
+          </button>
+        </div>
+      </Modal>
     </li>
   );
 };

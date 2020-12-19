@@ -36,23 +36,6 @@
       }
     }
   }
-  &__projects--hidden {
-    .sidebar__expansion-toggle {
-      .sidebar__btn--toggle {
-        span {
-          background-color: svg {
-            position: absolute;
-            top: 0.2rem;
-            left: 0.3;
-          }
-        }
-      }
-    }
-    .sidebar__projects-list {
-      display: none;
-    }
-  }
-
   &__projects {
     margin-top: 2rem;
     .sidebar__expansion-toggle {
@@ -96,12 +79,15 @@
         font-size: 1.4rem;
         padding: 5px 16px 5px 5px;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
         flex: 1;
+        align-items: center;
         @include project-style;
         .sidebar__project-title {
           display: flex;
           align-items: center;
+          flex-grow: 1;
+          outline: none;
           span {
             display: flex;
             align-items: center;
@@ -112,11 +98,15 @@
           }
         }
         .sidebar__btn--delete {
-          position: absolute;
-          right: 1rem;
+          display: none;
           width: 2.5rem;
           height: 2.5rem;
           font-size: 1.4rem;
+        }
+        &:hover {
+          .sidebar__btn--delete {
+            display: block;
+          }
         }
       }
     }

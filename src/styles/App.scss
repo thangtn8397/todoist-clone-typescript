@@ -3,6 +3,8 @@
 @import 'sidebar';
 @import 'generic';
 @import 'mixins';
+@import 'modal';
+@import 'backdrop';
 html {
   box-sizing: border-box;
   font-size: 10px;

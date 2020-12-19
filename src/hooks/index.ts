@@ -9,7 +9,7 @@ export const useProjects = () => {
     firebase
       .firestore()
       .collection('projects')
-      .where('userId', '==', 'giNWHTADl74VIo2u77Wu')
+      .where('userId', '==', '2yb5pB8U4lkfaopj9unJ')
       .orderBy('projectId')
       .get()
       .then((snapshot) => {
@@ -21,7 +21,9 @@ export const useProjects = () => {
             docId: project.id,
           };
         });
-        setProjects(newProjects);
+        if (JSON.stringify(newProjects) !== JSON.stringify(projects)) {
+          setProjects(newProjects);
+        }
       });
   }, [projects]);
   return { projects, setProjects };

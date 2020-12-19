@@ -1,23 +1,36 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import AddIcon from '@material-ui/icons/Add';
-import { useProjects } from '../hooks';
+import { useProjectsContext } from '../contexts/projects-context';
 import { Project } from './Project';
 
 export const Projects: React.FC = () => {
-  const { projects } = useProjects();
+  console.log('render');
+  const { projects } = useProjectsContext();
   const [showProjects, setShowProjects] = useState(true);
   const toggleProjects = () => {
     setShowProjects(!showProjects);
   };
+  const projectList = showProjects ? (
+    <ul className="sidebar__projects-list">
+      {projects
+        ? projects.map((project) => {
+            return (
+              <Project
+                key={project.docId}
+                name={project.name}
+                userId={project.userId}
+                projectId={project.projectId}
+                docId={project.docId}
+              />
+            );
+          })
+        : null}
+    </ul>
+  ) : null;
   return (
-    <div
-      className={
-        showProjects
-          ? 'sidebar__projects'
-          : 'sidebar__projects--hidden sidebar__projects'
-      }
-    >
+    <div className="sidebar__projects">
       <div className="sidebar__expansion-toggle">
         <button
           type="button"
@@ -26,7 +39,13 @@ export const Projects: React.FC = () => {
             toggleProjects();
           }}
         >
-          <span className="arrow">
+          <span
+            style={
+              showProjects
+                ? { transform: 'rotate(90deg)' }
+                : { transform: 'rotate(0)' }
+            }
+          >
             <ArrowForwardIosIcon />
           </span>
           Projects
@@ -35,19 +54,7 @@ export const Projects: React.FC = () => {
           <AddIcon />
         </button>
       </div>
-      <ul className="sidebar__projects-list">
-        {projects.map((project) => {
-          return (
-            <Project
-              key={project.docId}
-              name={project.name}
-              userId={project.userId}
-              projectId={project.projectId}
-              docId={project.docId}
-            />
-          );
-        })}
-      </ul>
+      {projectList}
     </div>
   );
 };
