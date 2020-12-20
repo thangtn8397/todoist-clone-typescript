@@ -111,12 +111,4 @@
       }
     }
   }
-  &__projects--hidden {
-    .arrow {
-      transform: rotate(90deg);
-    }
-    .sidebar__projects-list {
-      display: none;
-    }
-  }
 }

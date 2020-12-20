@@ -55,7 +55,7 @@ export const Project: React.FC<ProjectProps> = ({
         type="button"
         className="btn sidebar__btn--delete"
         onClick={() => {
-          setConfirmDelete(true);
+          setConfirmDelete(!confirmDelete);
         }}
       >
         <span>
@@ -64,22 +64,21 @@ export const Project: React.FC<ProjectProps> = ({
       </button>
 
       <Modal
+        modalType="Delete"
         showModal={confirmDelete}
-        onCloseModal={() => {
-          setConfirmDelete(false);
+        onClickCancelBtn={() => {
+          setConfirmDelete(!confirmDelete);
+        }}
+        onClickSuccessBtn={() => {
+          deleteProject(docId);
+          setConfirmDelete(!confirmDelete);
         }}
       >
         <div>
-          <p>Are you sure you want to delete {name}?</p>
-          <button
-            type="button"
-            onClick={() => {
-              deleteProject(docId);
-              setConfirmDelete(false);
-            }}
-          >
-            delete
-          </button>
+          <p>
+            Are you sure you want to delete
+            <span style={{ fontWeight: 'bold' }}> {name}</span>?
+          </p>
         </div>
       </Modal>
     </li>

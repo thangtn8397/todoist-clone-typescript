@@ -9,3 +9,13 @@
     font-weight: 700;
   }
 }
+
+@mixin btn-style($bg, $width, $color) {
+  background-color: $bg;
+  color: $color;
+  width: $width;
+  border-radius: 5px;
+  &:hover {
+    border: 1px #000 solid;
+  }
+}
