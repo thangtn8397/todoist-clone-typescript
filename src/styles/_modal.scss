@@ -4,7 +4,7 @@
   position: fixed;
   left: 30%;
   top: 35%;
-  z-index: 20;
+  z-index: 50;
   border: 1px solid transparent;
   border-radius: 5px;
   width: 40%;
@@ -17,12 +17,10 @@
   &__footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
   &__btn--success {
     @include btn-style($generic-bg, 70px, #fff);
-    padding: 1rem;
-    margin: 0 1rem;
   }
   &__btn--cancel {
     @include btn-style($sidebar-bg, 70px, #000);

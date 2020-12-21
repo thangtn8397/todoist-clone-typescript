@@ -4,6 +4,8 @@
 /** ================== */
 .header {
   background-color: $generic-bg;
+  position: relative;
+  z-index: 20;
   height: 4rem;
   font-size: 1.4rem;
   display: flex;

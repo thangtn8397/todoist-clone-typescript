@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles/App.scss';
 import Header from './components/layout/Header';
-import Sidebar from './components/layout/Sidebar';
 import { SelectedProjectProvider } from './contexts/selected-project-context';
 import { ProjectsProvider } from './contexts/projects-context';
+import Content from './components/layout/Content';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <ProjectsProvider>
         <div className="App">
           <Header />
-          <Sidebar />
+          <Content />
         </div>
       </ProjectsProvider>
     </SelectedProjectProvider>
