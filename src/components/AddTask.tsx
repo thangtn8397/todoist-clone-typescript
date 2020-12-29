@@ -106,16 +106,15 @@ const AddTask = () => {
 
   return (
     <div className="add-task">
-      {showQuickAddTask ? (
-        <Modal
-          showModal={showQuickAddTask}
-          closeModal={() => {
-            setShowQuickAddTask(false);
-          }}
-        >
-          {editor}
-        </Modal>
-      ) : null}
+      <Modal
+        showModal={showQuickAddTask}
+        closeModal={() => {
+          setShowQuickAddTask(false);
+        }}
+      >
+        {showQuickAddTask ? editor : null}
+      </Modal>
+
       {showEditor ? editor : null}
       <button
         onClick={() => {

@@ -8,7 +8,8 @@ import { useProjectsContext } from '../contexts/projects-context';
 import { firebase } from '../firebase';
 
 export const Project: React.FC<ProjectProps> = ({
-  docId = 'inbox',
+  docId,
+  projectId = 'inbox',
   name,
 }: ProjectProps) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -28,7 +29,7 @@ export const Project: React.FC<ProjectProps> = ({
   return (
     <li
       className={
-        docId === selectedProject
+        projectId === selectedProject
           ? 'active sidebar__project'
           : 'sidebar__project'
       }
@@ -38,11 +39,11 @@ export const Project: React.FC<ProjectProps> = ({
         tabIndex={0}
         className="sidebar__project-title"
         onClick={() => {
-          setSelectedProject(docId);
+          setSelectedProject(projectId);
         }}
         onKeyDown={(event: React.KeyboardEvent) => {
           if (event.key === 'Enter') {
-            setSelectedProject(docId);
+            setSelectedProject(projectId);
           }
         }}
       >

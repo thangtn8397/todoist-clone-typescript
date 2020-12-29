@@ -83,8 +83,6 @@
         flex: 1;
         align-items: center;
         @include project-style;
-        position: relative;
-        z-index: 10;
         .sidebar__project-title {
           display: flex;
           align-items: center;
