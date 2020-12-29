@@ -4,16 +4,19 @@ import Header from './components/layout/Header';
 import { SelectedProjectProvider } from './contexts/selected-project-context';
 import { ProjectsProvider } from './contexts/projects-context';
 import Content from './components/layout/Content';
+import { QuickAddTaskProvider } from './contexts/quick-add-task-context';
 
 function App() {
   return (
     <SelectedProjectProvider>
-      <ProjectsProvider>
-        <div className="App">
-          <Header />
-          <Content />
-        </div>
-      </ProjectsProvider>
+      <QuickAddTaskProvider>
+        <ProjectsProvider>
+          <div className="App">
+            <Header />
+            <Content />
+          </div>
+        </ProjectsProvider>
+      </QuickAddTaskProvider>
     </SelectedProjectProvider>
   );
 }

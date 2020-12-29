@@ -2,12 +2,12 @@
 import React, { FC, useContext, useState } from 'react';
 
 interface SelectedProjectContextInterface {
-  selectedProject: string | undefined;
-  setSelectedProject(project: string | undefined): void;
+  selectedProject: string;
+  setSelectedProject(project: string): void;
 }
 const initialContextValue = {
   selectedProject: 'inbox',
-  setSelectedProject: (selectedProject: string | undefined) => {
+  setSelectedProject: (selectedProject = 'inbox') => {
     return undefined;
   },
 };
@@ -16,9 +16,7 @@ export const SelectedProjectContext = React.createContext<SelectedProjectContext
 );
 
 export const SelectedProjectProvider: FC = ({ children }: any) => {
-  const [selectedProject, setSelectedProject] = useState<string | undefined>(
-    'inbox',
-  );
+  const [selectedProject, setSelectedProject] = useState<string>('inbox');
   const value: SelectedProjectContextInterface = {
     selectedProject,
     setSelectedProject,

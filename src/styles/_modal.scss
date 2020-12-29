@@ -14,11 +14,7 @@
   &__children {
     margin: 2rem;
   }
-  &__footer {
-    display: flex;
-    justify-content: flex-end;
-    margin: 2rem 0;
-  }
+
   &__btn--success {
     @include btn-style($generic-bg, 70px, #fff);
   }

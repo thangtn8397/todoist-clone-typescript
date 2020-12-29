@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+/* eslint-disable operator-linebreak */
 import React, { useState } from 'react';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import AddIcon from '@material-ui/icons/Add';
@@ -6,29 +7,27 @@ import { useProjectsContext } from '../contexts/projects-context';
 import { Project } from './Project';
 
 export const Projects: React.FC = () => {
-  console.log('render');
   const { projects } = useProjectsContext();
   const [showProjects, setShowProjects] = useState(true);
   const toggleProjects = () => {
     setShowProjects(!showProjects);
   };
-  const projectList = showProjects ? (
-    <ul className="sidebar__projects-list">
-      {projects
-        ? projects.map((project) => {
-            return (
-              <Project
-                key={project.docId}
-                name={project.name}
-                userId={project.userId}
-                projectId={project.projectId}
-                docId={project.docId}
-              />
-            );
-          })
-        : null}
-    </ul>
-  ) : null;
+  const projectList =
+    showProjects && projects ? (
+      <ul className="sidebar__projects-list">
+        {projects.map((project) => {
+          return (
+            <Project
+              key={project.docId}
+              name={project.name}
+              userId={project.userId}
+              projectId={project.projectId}
+              docId={project.docId}
+            />
+          );
+        })}
+      </ul>
+    ) : null;
   return (
     <div className="sidebar__projects">
       <div className="sidebar__expansion-toggle">

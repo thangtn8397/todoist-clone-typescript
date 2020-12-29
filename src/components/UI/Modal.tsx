@@ -4,24 +4,16 @@ import Backdrop from './Backdrop';
 type ModalProps = {
   showModal: boolean;
   children: any;
-  modalType: string;
-  onClickSuccessBtn: () => void;
-  onClickCancelBtn: () => void;
+  closeModal: () => void;
 };
 
-const Modal = ({
-  onClickSuccessBtn,
-  onClickCancelBtn,
-  showModal,
-  children,
-  modalType,
-}: ModalProps) => {
+const Modal = ({ closeModal, showModal, children }: ModalProps) => {
   return (
     <>
       <Backdrop
         show={showModal}
         clicked={() => {
-          onClickCancelBtn();
+          closeModal();
         }}
       />
       <div
@@ -32,27 +24,6 @@ const Modal = ({
         }}
       >
         <div className="modal__children">{children}</div>
-        <hr />
-        <div className="modal__footer">
-          <button
-            className="btn modal__btn--success"
-            type="button"
-            onClick={() => {
-              onClickSuccessBtn();
-            }}
-          >
-            {modalType}
-          </button>
-          <button
-            className="btn modal__btn--cancel"
-            type="button"
-            onClick={() => {
-              onClickCancelBtn();
-            }}
-          >
-            Cancel
-          </button>
-        </div>
       </div>
     </>
   );

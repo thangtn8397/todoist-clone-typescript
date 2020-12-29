@@ -6,10 +6,15 @@
 @import 'modal';
 @import 'backdrop';
 @import 'content';
+@import 'tasks';
+@import 'task';
+@import 'add-task';
+@import 'project-overlay';
 html {
   box-sizing: border-box;
   font-size: 10px;
 }
+
 * {
   box-sizing: border-box;
 }

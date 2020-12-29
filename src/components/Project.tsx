@@ -8,8 +8,8 @@ import { useProjectsContext } from '../contexts/projects-context';
 import { firebase } from '../firebase';
 
 export const Project: React.FC<ProjectProps> = ({
+  docId = 'inbox',
   name,
-  docId,
 }: ProjectProps) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const { selectedProject, setSelectedProject } = useSelectedProject();
@@ -64,13 +64,8 @@ export const Project: React.FC<ProjectProps> = ({
       </button>
 
       <Modal
-        modalType="Delete"
         showModal={confirmDelete}
-        onClickCancelBtn={() => {
-          setConfirmDelete(!confirmDelete);
-        }}
-        onClickSuccessBtn={() => {
-          deleteProject(docId);
+        closeModal={() => {
           setConfirmDelete(!confirmDelete);
         }}
       >
@@ -79,6 +74,25 @@ export const Project: React.FC<ProjectProps> = ({
             Are you sure you want to delete
             <span style={{ fontWeight: 'bold' }}> {name}</span>?
           </p>
+          <button
+            className="btn modal__btn--success"
+            type="button"
+            onClick={() => {
+              deleteProject(docId);
+              setConfirmDelete(!confirmDelete);
+            }}
+          >
+            Delete
+          </button>
+          <button
+            className="btn modal__btn--cancel"
+            type="button"
+            onClick={() => {
+              setConfirmDelete(!confirmDelete);
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </Modal>
     </li>

@@ -17,9 +17,12 @@
   border-radius: 5px;
   padding: 1rem;
   margin: 0 1rem;
-  border: 1px solid transparent;
+  border-style: none;
+}
 
-  &:hover {
-    border: 1px #000 solid;
-  }
+@mixin component-in-task-style {
+  width: 100%;
+  max-width: 92.2rem;
+  margin: 0 auto;
+  padding: 0 55px;
 }

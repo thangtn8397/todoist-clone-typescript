@@ -4,8 +4,10 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+import { useQuickAddTaskContext } from '../../contexts/quick-add-task-context';
 
 function Header() {
+  const { setShowQuickAddTask } = useQuickAddTaskContext();
   return (
     <nav className="header">
       <div className="header__left-control">
@@ -24,7 +26,11 @@ function Header() {
       </div>
       <div className="header__right-group">
         <span>
-          <AddOutlinedIcon />
+          <AddOutlinedIcon
+            onClick={() => {
+              setShowQuickAddTask(true);
+            }}
+          />
         </span>
         <span>
           <NotificationsNoneOutlinedIcon />

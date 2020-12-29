@@ -1,12 +1,12 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable no-nested-ternary */
-/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { ProjectProps, GenericProject, TaskProps } from '../types/index';
 import { firebase } from '../firebase';
 import { collatedTasksExist } from '../helper/index';
+import { CombineProps } from '../components/Task';
 
 export const useProjects = () => {
   const [projects, setProjects] = useState<ProjectProps[]>([]);
@@ -36,7 +36,7 @@ export const useProjects = () => {
 };
 
 export const useTasks = (selectedProject: string) => {
-  const [tasks, setTasks] = useState<TaskProps>();
+  const [tasks, setTasks] = useState<CombineProps[]>([]);
   const [archivedTasks, setArchivedTasks] = useState([]);
   useEffect(() => {
     let unsubcribe: any;
@@ -48,13 +48,9 @@ export const useTasks = (selectedProject: string) => {
     unsubcribe = !collatedTasksExist(selectedProject)
       ? unsubcribe.where('projectId', '==', selectedProject)
       : selectedProject === GenericProject.TODAY
-      ? (unsubcribe = unsubcribe.where(
-          'date',
-          '==',
-          moment().format('DD/MM/YYYY'),
-        ))
+      ? unsubcribe.where('date', '==', moment().format('DD/MM/YYYY'))
       : selectedProject === GenericProject.INBOX
-      ? (unsubcribe = unsubcribe.where('date', '==', ''))
+      ? unsubcribe.where('date', '==', '')
       : unsubcribe;
     unsubcribe = unsubcribe.onSnapshot((snapshot: any) => {
       const newTasks = snapshot.docs.map((task: any) => {
@@ -65,18 +61,18 @@ export const useTasks = (selectedProject: string) => {
       });
       setTasks(
         selectedProject === GenericProject.UPCOMING
-          ? newTasks.filter((task: any) => {
+          ? newTasks.filter((task: TaskProps) => {
               return (
                 moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 &&
-                task.archived !== true
+                task.archived === false
               );
             })
-          : newTasks.filter((task: any) => {
+          : newTasks.filter((task: TaskProps) => {
               return task.archived !== true;
             }),
       );
       setArchivedTasks(
-        newTasks.filter((task: any) => {
+        newTasks.filter((task: TaskProps) => {
           return task.archived !== false;
         }),
       );

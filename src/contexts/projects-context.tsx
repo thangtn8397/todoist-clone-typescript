@@ -10,7 +10,7 @@ interface IProjectContext {
 const initialContextValue = {
   projects: [],
   setProjects: (projects: ProjectProps[]) => {
-    return undefined;
+    return [];
   },
 };
 export const ProjectsContext = React.createContext<IProjectContext>(

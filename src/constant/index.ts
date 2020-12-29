@@ -1,7 +1,5 @@
-import { GenericProject } from '../types/index';
-
 export const collatedTasks = [
-  { key: GenericProject.INBOX, name: 'Inbox' },
-  { key: GenericProject.TODAY, name: 'Today' },
-  { key: GenericProject.UPCOMING, name: 'Upcoming' },
+  { key: 'inbox', name: 'Inbox' },
+  { key: 'today', name: 'Today' },
+  { key: 'upcoming', name: 'Upcoming' },
 ];
