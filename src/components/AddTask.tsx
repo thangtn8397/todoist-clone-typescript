@@ -19,6 +19,14 @@ const AddTask = () => {
   let collatedDate = '';
   const projectId = project || selectedProject;
 
+  const setInitState = () => {
+    setShowQuickAddTask(false);
+    setProjectName('Inbox');
+    setShowProjectOverlay(false);
+    setTask('');
+    setShowEditor(false);
+  };
+
   const addTask = () => {
     if (selectedProject === 'today') {
       collatedDate = moment().format('DD/MM/YYYY');
@@ -37,11 +45,11 @@ const AddTask = () => {
         userId: '2yb5pB8U4lkfaopj9unJ',
       })
       .then(() => {
-        setTask('');
+        setInitState();
       });
   };
 
-  const editor = showEditor ? (
+  const editor = (
     <>
       <div className="add-task__editor">
         <input
@@ -87,14 +95,14 @@ const AddTask = () => {
           className="btn add-task__actions-cancel"
           type="button"
           onClick={() => {
-            setShowEditor(false);
+            setInitState();
           }}
         >
           Cancel
         </button>
       </div>
     </>
-  ) : null;
+  );
 
   return (
     <div className="add-task">
@@ -108,7 +116,7 @@ const AddTask = () => {
           {editor}
         </Modal>
       ) : null}
-      {editor}
+      {showEditor ? editor : null}
       <button
         onClick={() => {
           setShowEditor(true);

@@ -35,7 +35,7 @@ export const Project: React.FC<ProjectProps> = ({
     >
       <div
         role="button"
-        tabIndex={-10}
+        tabIndex={0}
         className="sidebar__project-title"
         onClick={() => {
           setSelectedProject(docId);

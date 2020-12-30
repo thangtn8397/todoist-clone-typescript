@@ -66,6 +66,7 @@
     .add-task__btn {
       border: transparent 1px solid;
       color: $generic-bg;
+      z-index: 10;
     }
   }
 }

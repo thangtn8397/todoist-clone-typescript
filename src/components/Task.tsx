@@ -17,7 +17,7 @@ const Task: React.FC<CombineProps> = ({ id, task }: CombineProps) => {
     });
   };
   return (
-    <div className="task">
+    <li className="task">
       <div className="task__content">
         <div
           className="task__content-checkbox"
@@ -44,7 +44,7 @@ const Task: React.FC<CombineProps> = ({ id, task }: CombineProps) => {
           <DeleteOutlineOutlinedIcon />
         </span>
       </div>
-    </div>
+    </li>
   );
 };
 
